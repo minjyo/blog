@@ -14,6 +14,12 @@ const buttonStyle = css`
   cursor: pointer;
   background: ${palette.sgBlue};
 
+  &:disabled {
+    background: ${palette.gray[3]};
+    color: ${palette.gray[5]};
+    cursor: not-allowed;
+  }
+
   ${(props) =>
     props.color &&
     css`
