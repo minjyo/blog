@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from './Responsive';
-import Button from './Button';
-import palette from 'lib/styles/palette';
 import { Link } from 'react-router-dom';
 
 const HeaderBlock = styled.div`
@@ -21,11 +19,6 @@ const Wrapper = styled(Responsive)`
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: 2px;
-    /* color: ${palette.sgOrange}; */
-  }
-  .right {
-    display: flex;
-    align-items: center;
   }
 `;
 
@@ -41,9 +34,6 @@ const Header = () => {
           <Link to="/" className="logo">
             MBTI_LOG
           </Link>
-          <div className="right">
-            <Button to="/setting">설정</Button>
-          </div>
         </Wrapper>
       </HeaderBlock>
       <Spacer />

@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 
 const MainPage = lazy(() => import('pages/MainPage'));
 const PostPage = lazy(() => import('pages/PostPage'));
-const SettingPage = lazy(() => import('pages/SettingPage'));
 const WritePage = lazy(() => import('pages/WritePage'));
 
 const App = () => {
@@ -22,7 +21,6 @@ const App = () => {
               exact
             ></Route>
             <Route component={WritePage} path={'/write'}></Route>
-            <Route component={SettingPage} path={'/setting'}></Route>
             <Route component={PostPage} path={'/:postId'}></Route>
           </Switch>
         </Suspense>
