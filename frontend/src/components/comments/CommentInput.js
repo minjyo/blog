@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import Responsive from 'components/common/Responsive';
+import Button from 'components/common/Button';
 
 const CommentInputBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -19,24 +20,37 @@ const BodyInput = styled.input`
   border-bottom: 1px solid ${palette.gray[2]};
 `;
 
-const CommentInput = ({ username, body, onChangeField }) => {
-  const onChangeUsername = (e) => {
-    onChangeField({ key: 'username', value: e.target.value });
-  };
+const StyledButton = styled(Button)`
+  height: 2.5rem;
+`;
 
-  const onChangeBody = (e) => {
-    onChangeField({ key: 'body', value: e.target.value });
-  };
-  return (
-    <CommentInputBlock>
-      <UsernameInput
-        placeholder="사용자 이름"
-        onChange={onChangeUsername}
-        value={username}
-      />
-      <BodyInput placeholder="댓글 내용" onChange={onChangeBody} value={body} />
-    </CommentInputBlock>
-  );
-};
+const CommentInput = React.memo(
+  ({ username, body, onChangeField, onPublish }) => {
+    const onChangeUsername = (e) => {
+      onChangeField({ key: 'username', value: e.target.value });
+    };
+
+    const onChangeBody = (e) => {
+      onChangeField({ key: 'body', value: e.target.value });
+    };
+    return (
+      <CommentInputBlock>
+        <UsernameInput
+          placeholder="사용자 이름"
+          onChange={onChangeUsername}
+          value={username}
+        />
+        <BodyInput
+          placeholder="댓글 내용"
+          onChange={onChangeBody}
+          value={body}
+        />
+        <StyledButton color="true" onClick={onPublish}>
+          등록
+        </StyledButton>
+      </CommentInputBlock>
+    );
+  },
+);
 
 export default CommentInput;

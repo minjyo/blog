@@ -23,7 +23,7 @@ const CommentItemBlock = styled.div`
   }
 `;
 
-const CommentItem = ({ comment }) => {
+const CommentItem = React.memo(({ comment }) => {
   const { username, body } = comment;
 
   return (
@@ -32,24 +32,22 @@ const CommentItem = ({ comment }) => {
       <p>{body}</p>
     </CommentItemBlock>
   );
-};
+});
 
 const CommentList = ({ comments, loading, error }) => {
   if (error) {
     return <CommentListBlock>오류 발생</CommentListBlock>;
   }
 
-  if (comments.length === 0) {
-    return <CommentListBlock>댓글을 달아주세요!</CommentListBlock>;
-  }
-
   return (
     <CommentListBlock>
       {!loading && comments && (
         <div>
-          {comments.map((comment) => (
-            <CommentItem comment={comment} key={comment._id}></CommentItem>
-          ))}
+          {comments.length === 0
+            ? '댓글을 달아주세요!'
+            : comments.map((comment) => (
+                <CommentItem comment={comment} key={comment._id}></CommentItem>
+              ))}
         </div>
       )}
     </CommentListBlock>

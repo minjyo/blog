@@ -1,11 +1,16 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listComments, changeField } from 'modules/comments';
-import CommentList from 'components/comments';
+import {
+  listComments,
+  changeField,
+  writeComment,
+  initialize,
+} from 'modules/comments';
+import CommentList from 'components/comments/CommentList';
 import CommentInput from 'components/comments/CommentInput';
 import { withRouter } from 'react-router-dom';
 
-const CommentListContainer = ({ match }) => {
+const CommentContainer = ({ match }) => {
   const { postId } = match.params;
   const dispatch = useDispatch();
   const { username, body, comments, error, loading } = useSelector(
@@ -23,8 +28,17 @@ const CommentListContainer = ({ match }) => {
     [dispatch],
   );
 
+  const onPublish = async () => {
+    await dispatch(writeComment({ username, body, postId }));
+    dispatch(listComments(postId));
+    dispatch(initialize());
+  };
+
   useEffect(() => {
     dispatch(listComments(postId));
+    return () => {
+      dispatch(initialize());
+    };
   }, [dispatch, postId]);
 
   return (
@@ -33,6 +47,7 @@ const CommentListContainer = ({ match }) => {
         onChangeField={onChangeField}
         username={username}
         body={body}
+        onPublish={onPublish}
       />
       <CommentList
         loading={loading}
@@ -43,4 +58,4 @@ const CommentListContainer = ({ match }) => {
   );
 };
 
-export default withRouter(CommentListContainer);
+export default withRouter(CommentContainer);
