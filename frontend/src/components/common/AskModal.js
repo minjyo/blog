@@ -1,7 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import palette from 'lib/styles/palette';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Button from 'components/common/Button';
 
 const FullScreen = styled.div`
