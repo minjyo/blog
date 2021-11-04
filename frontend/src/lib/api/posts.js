@@ -19,3 +19,7 @@ export const listPosts = (page) => {
 export const updatePost = ({ id, title, body }) => {
   return client.patch(`/api/posts/${id}`, { title, body });
 };
+
+export const removePost = (id) => {
+  return client.delete(`/api/posts/${id}`);
+};
