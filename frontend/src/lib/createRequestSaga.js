@@ -15,7 +15,7 @@ export default function createRequestSaga(type, request) {
       });
     } catch (e) {
       yield put({
-        tyupe: FAILURE,
+        type: FAILURE,
         payload: e,
         error: true,
       });

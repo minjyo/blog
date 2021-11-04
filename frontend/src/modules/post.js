@@ -1,28 +1,39 @@
 import { createAction, handleActions } from 'redux-actions';
 import { takeLatest } from 'redux-saga/effects';
-import {
+import createRequestSaga, {
   createRequestActionTypes,
-  createRequestSaga,
 } from 'lib/createRequestSaga';
-import * as postAPI from 'lib/api/posts';
+import * as postsAPI from 'lib/api/posts';
 
-// DUCK 패턴: 액션 타입 + 액션 생성 함수 + 리듀서 -> 리덕스
+const [READ_POST, READ_POST_SUCCESS, READ_POST_FAILURE] =
+  createRequestActionTypes('post/READ_POST');
+const UNLOAD_POST = 'post/UNLOAD_POST'; // 포스트 페이지에서 벗어날 때 데이터 비우기
 
-const SAMPLE_ACTION = 'post/SAMPLE_ACTION';
+export const readPost = createAction(READ_POST, (id) => id);
+export const unloadPost = createAction(UNLOAD_POST);
 
-export const sampleAction = createAction(SAMPLE_ACTION);
-
-// 사가 생성
-//const sampleSaga = createRequestSaga(SAMPLE_ACTION, postAPI.sample);
+const readPostSaga = createRequestSaga(READ_POST, postsAPI.readPost);
 export function* postSaga() {
-  // yield takeLatest(SAMPLE_ACTION, sampleSaga);
+  yield takeLatest(READ_POST, readPostSaga);
 }
 
-const initialState = {};
+const initialState = {
+  post: null,
+  error: null,
+};
 
 const post = handleActions(
   {
-    [SAMPLE_ACTION]: (state, action) => state,
+    [READ_POST_SUCCESS]: (state, { payload: post }) => ({
+      ...state,
+      post,
+    }),
+    [READ_POST_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      error,
+    }),
+
+    [UNLOAD_POST]: () => initialState,
   },
   initialState,
 );

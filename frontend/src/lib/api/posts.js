@@ -1,9 +1,9 @@
 import client from './client';
-import axios from 'axios';
 
-export const writePost = async ({ title, body }) => {
+export const writePost = ({ title, body }) => {
   return client.post('/api/posts', { title, body });
-  // const response = await axios.post('/api/posts', { title, body });
-  // const response = await axios.get('/api/posts');
-  // return response.data;
+};
+
+export const readPost = (id) => {
+  return client.get(`/api/posts/${id}`);
 };
