@@ -39,6 +39,10 @@ const CommentList = ({ comments, loading, error }) => {
     return <CommentListBlock>오류 발생</CommentListBlock>;
   }
 
+  if (comments.length === 0) {
+    return <CommentListBlock>댓글을 달아주세요!</CommentListBlock>;
+  }
+
   return (
     <CommentListBlock>
       {!loading && comments && (
