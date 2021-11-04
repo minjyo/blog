@@ -30,7 +30,6 @@ export const write = async (ctx) => {
   const schema = Joi.object().keys({
     username: Joi.string().required(), // required()가 있으면 필수 항목
     body: Joi.string().required(),
-    postId: Joi.objectId().required(),
   });
 
   // 검증하고 나서 검증 실패인 경우 에러 처리
@@ -41,7 +40,8 @@ export const write = async (ctx) => {
     return;
   }
 
-  const { username, body, postId } = ctx.request.body;
+  const { username, body } = ctx.request.body;
+  const { postId } = ctx.params;
   const comment = new Comment({
     username,
     body,
