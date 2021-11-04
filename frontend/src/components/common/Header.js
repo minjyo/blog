@@ -32,7 +32,7 @@ const Header = () => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">
-            MBTI_LOG
+            BLOG
           </Link>
         </Wrapper>
       </HeaderBlock>

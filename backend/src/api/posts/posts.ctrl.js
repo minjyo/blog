@@ -96,11 +96,11 @@ export const list = async (ctx) => {
   try {
     const posts = await Post.find() // 데이터 조회
       .sort({ _id: -1 }) // 내림차순 정렬
-      .limit(10) // 개수 제한
-      .skip((page - 1) * 10) // 페이지 기능 구현
+      .limit(5) // 개수 제한
+      .skip((page - 1) * 5) // 페이지 기능 구현
       .exec(); // 서버에 쿼리 요청
     const postCount = await Post.countDocuments().exec();
-    ctx.set('Last-Page', Math.ceil(postCount / 10)); // 마지막 페이지 번호 알려주기
+    ctx.set('Last-Page', Math.ceil(postCount / 5)); // 마지막 페이지 번호 알려주기
     ctx.body = posts
       .map((post) => post.toJSON()) // or lean()
       .map((post) => ({
@@ -168,7 +168,8 @@ export const update = async (ctx) => {
   }
 
   const nextData = { ...ctx.request.body }; // 깨체 복사
-  if (nextData.body) { // body 값이 주어져있으면 HTML 필터링
+  if (nextData.body) {
+    // body 값이 주어져있으면 HTML 필터링
     nextData.body = sanitizeHtml(nextData.body);
   }
 

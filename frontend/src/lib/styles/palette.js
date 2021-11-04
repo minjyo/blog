@@ -23,6 +23,7 @@ const palette = {
     '#0c8599',
     '#0b7285',
   ],
+  sgOrangeLight: '#fccdc2',
   sgOrange: '#ef532b',
   sgBlue: '#1B4C97',
 };

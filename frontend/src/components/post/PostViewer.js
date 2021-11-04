@@ -6,6 +6,8 @@ import SubInfo from 'components/common/SubInfo';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 2px solid ${palette.gray[2]};
 `;
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};

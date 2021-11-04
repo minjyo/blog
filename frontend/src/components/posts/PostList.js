@@ -9,15 +9,49 @@ import { Link } from 'react-router-dom';
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
 `;
-const WritePostButtonWrapper = styled.div`
+
+const IntroWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
   margin-bottom: 3rem;
 `;
 
+const IntroBlock = styled.div`
+  padding: 0.5rem;
+  flex: 1;
+  border-bottom: 3px solid ${palette.sgOrange};
+`;
+
+const IntroText = styled.div`
+  font-size: 2.5rem;
+  text-align: center;
+  z-index: 10;
+
+  @keyframes showUp {
+    0% {
+      color: white;
+      transform: translateY(120%);
+    }
+    100% {
+      color: black;
+    }
+  }
+  animation: showUp 3s;
+`;
+
+const WritePostButton = styled(Button)`
+  height: 30px;
+  margin-left: 4rem;
+  align-self: flex-end;
+`;
+
+const PostsHeader = styled.h1`
+  font-size: 1.25rem;
+  font-weight: bold;
+`;
+
 const PostItemBlock = styled.div`
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
   &::first-child {
     padding-top: 0;
@@ -59,11 +93,15 @@ const PostList = ({ posts, loading, error }) => {
 
   return (
     <PostListBlock>
-      <WritePostButtonWrapper>
-        <Button color="true" to="/write">
+      <IntroWrapper>
+        <IntroBlock>
+          <IntroText>안녕하세요, MINJYO 님!</IntroText>
+        </IntroBlock>
+        <WritePostButton color="true" to="/write">
           새 글 작성하기
-        </Button>
-      </WritePostButtonWrapper>
+        </WritePostButton>
+      </IntroWrapper>
+      <PostsHeader>작성된 게시물</PostsHeader>
       {!loading && posts && (
         <div>
           {posts.map((post) => (

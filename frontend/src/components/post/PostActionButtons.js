@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from 'lib/styles/palette';
 import AskRemoveModal from './AskRemoveModal';
 
@@ -11,10 +11,13 @@ const PostActionButtonsBlock = styled.div`
 `;
 
 const ActionButton = styled.button`
+  ${(props) =>
+    css`
+      background: ${props.color ? palette.sgOrange : palette.sgBlue};
+    `}
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   color: white;
-  background: ${palette.sgOrange};
   font-weight: bold;
   border: none;
   outline: none;
@@ -42,7 +45,9 @@ const PostActionButtons = ({ onEdit, onRemove }) => {
   return (
     <>
       <PostActionButtonsBlock>
-        <ActionButton onClick={onEdit}>수정</ActionButton>
+        <ActionButton color="true" onClick={onEdit}>
+          수정
+        </ActionButton>
         <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
       </PostActionButtonsBlock>
       <AskRemoveModal

@@ -5,7 +5,7 @@ import createRequestSaga, {
 } from 'lib/createRequestSaga';
 import * as commentsAPI from 'lib/api/comments';
 
-const INITIALIZE = 'write/INITIALIZE'; // 모든 내용 초기화
+const INITIALIZE = 'comments/INITIALIZE'; // 모든 내용 초기화
 const CHANGE_FIELD = 'comments/CHANGE_FIELD'; // 특정 key 값 바꾸기
 const [LIST_COMMENTS, LIST_COMMENTS_SUCCESS, LIST_COMMENTS_FAILURE] =
   createRequestActionTypes('comments/LIST_COMMENTS');

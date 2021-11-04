@@ -7,20 +7,25 @@ const CommentListBlock = styled(Responsive)`
   margin-top: 3rem;
 `;
 const CommentItemBlock = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
   & + & {
     border-top: 1px solid ${palette.gray[2]};
   }
+`;
 
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 0;
-  }
-  p {
-    margin-top: 1rem;
-  }
+const UsernameBlock = styled.div`
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+`;
+const BodyBlock = styled.div`
+  font-size: 1.5rem;
+  flex: 4;
+  text-align: left;
+  padding-top: 0.5rem;
 `;
 
 const CommentItem = React.memo(({ comment }) => {
@@ -28,8 +33,8 @@ const CommentItem = React.memo(({ comment }) => {
 
   return (
     <CommentItemBlock>
-      <h3>{username}</h3>
-      <p>{body}</p>
+      <UsernameBlock>{username}</UsernameBlock>
+      <BodyBlock>{body}</BodyBlock>
     </CommentItemBlock>
   );
 });

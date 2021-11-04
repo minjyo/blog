@@ -12,12 +12,20 @@ const CommentInputBlock = styled(Responsive)`
 const UsernameInput = styled.input`
   padding: 1rem;
   flex: 1;
-  border-bottom: 1px solid ${palette.gray[2]};
+  outline: none;
+  border: none;
+  border-bottom: 1px solid ${palette.sgOrange};
+  font-size: 1.25rem;
 `;
 const BodyInput = styled.input`
   padding: 1rem;
-  flex: 3;
-  border-bottom: 1px solid ${palette.gray[2]};
+  flex: 4;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid ${palette.sgOrange};
+  margin-left: 2rem;
+  margin-right: 4rem;
+  font-size: 1.25rem;
 `;
 
 const StyledButton = styled(Button)`
