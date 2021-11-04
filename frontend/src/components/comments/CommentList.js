@@ -34,7 +34,7 @@ const CommentItem = ({ comment }) => {
   );
 };
 
-const CommentItemList = ({ comments, loading, error }) => {
+const CommentList = ({ comments, loading, error }) => {
   if (error) {
     return <CommentListBlock>오류 발생</CommentListBlock>;
   }
@@ -52,4 +52,4 @@ const CommentItemList = ({ comments, loading, error }) => {
   );
 };
 
-export default CommentItemList;
+export default CommentList;
