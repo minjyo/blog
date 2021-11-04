@@ -23,6 +23,8 @@ const palette = {
     '#0c8599',
     '#0b7285',
   ],
+  sgOrange: '#ef532b',
+  sgBlue: '#1B4C97',
 };
 
 export default palette;

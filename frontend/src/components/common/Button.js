@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from 'lib/styles/palette';
+import { Link } from 'react-router-dom';
 
-const StyledButton = styled.button`
+const buttonStyle = css`
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -12,12 +13,22 @@ const StyledButton = styled.button`
   outline: none;
   cursor: pointer;
 
-  background: ${palette.gray[8]};
+  background: ${palette.sgOrange};
   &:hover {
-    background: ${palette.gray[6]};
+    background: ${palette.sgBlue};
   }
 `;
 
-const Button = (props) => <StyledButton {...props}></StyledButton>;
+const StyledButton = styled.button`
+  ${buttonStyle}
+`;
+
+const StyledLink = styled(Link)`
+  ${buttonStyle}
+`;
+
+const Button = (props) => {
+  return props.to ? <StyledLink {...props} /> : <StyledButton {...props} />;
+};
 
 export default Button;

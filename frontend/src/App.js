@@ -12,9 +12,9 @@ const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route component={MainPage} path={('/@:username', '/')} exact></Route>
-          <Route component={PostPage} path={'/:postId'} exact></Route>
-          <Route component={WritePage} path={'/write'} exact></Route>
-          <Route component={SettingPage} path={'/setting'} exact></Route>
+          <Route component={WritePage} path={'/write'}></Route>
+          <Route component={SettingPage} path={'/setting'}></Route>
+          <Route component={PostPage} path={'/:postId'}></Route>
         </Switch>
       </Suspense>
     </Router>
