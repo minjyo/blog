@@ -15,3 +15,7 @@ export const listPosts = (page) => {
   });
   return client.get(`/api/posts?${queryString}`);
 };
+
+export const updatePost = ({ id, title, body }) => {
+  return client.patch(`/api/posts/${id}`, { title, body });
+};
