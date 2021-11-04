@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import Responsive from 'components/common/Responsive';
+import SubInfo from 'components/common/SubInfo';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
@@ -16,17 +17,7 @@ const PostHead = styled.div`
     margin: 0;
   }
 `;
-const SubInfo = styled.div`
-  margin-top: 1rem;
-  color: ${palette.gray[6]};
 
-  span + span:before {
-    color: ${palette.gray[5]};
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    content: '\\B7';
-  }
-`;
 const PostContent = styled.div`
   font-size: 1.5rem;
   color: ${palette.gray[8]};
@@ -50,12 +41,10 @@ const PostViewer = ({ post, error, loading }) => {
     <PostViewerBlock>
       <PostHead>
         <h1>{title}</h1>
-        <SubInfo>
-          <span>
-            <b>user</b>
-          </span>
-          <span>{new Date(publishedDate).toLocaleDateString()}</span>
-        </SubInfo>
+        <SubInfo
+          publishedDate={new Date(publishedDate)}
+          hasMarginTop="true"
+        ></SubInfo>
       </PostHead>
       <PostContent
         //HTHML 적용

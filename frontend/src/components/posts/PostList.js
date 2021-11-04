@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import palette from 'lib/styles/palette';
 import Responsive from 'components/common/Responsive';
 import Button from 'components/common/Button';
+import SubInfo from 'components/common/SubInfo';
 
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -40,11 +41,7 @@ const PostItem = () => {
   return (
     <PostItemBlock>
       <h2>제목</h2>
-
-      <span>
-        <b>user</b>
-      </span>
-      <span>{new Date().toLocaleDateString()}</span>
+      <SubInfo publishedDate={new Date()} />
       <p>포스트 내용의 일부분..</p>
     </PostItemBlock>
   );
