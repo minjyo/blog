@@ -4,14 +4,13 @@ import {
   createRequestActionTypes,
   createRequestSaga,
 } from 'lib/createRequestSaga';
-import * as postAPI from 'lib/api/post';
+import * as postAPI from 'lib/api/posts';
 
 // DUCK 패턴: 액션 타입 + 액션 생성 함수 + 리듀서 -> 리덕스
 
 const SAMPLE_ACTION = 'post/SAMPLE_ACTION';
 
 export const sampleAction = createAction(SAMPLE_ACTION);
-
 
 // 사가 생성
 //const sampleSaga = createRequestSaga(SAMPLE_ACTION, postAPI.sample);
