@@ -23,7 +23,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading }) => {
+const PostViewer = ({ post, error, loading, actionButtons }) => {
   if (error) {
     if (error.response && error.response.status === 404) {
       return <PostViewerBlock>존재하지 않는 포스트입니다.</PostViewerBlock>;
@@ -46,6 +46,7 @@ const PostViewer = ({ post, error, loading }) => {
           hasMarginTop="true"
         ></SubInfo>
       </PostHead>
+      {actionButtons}
       <PostContent
         //HTHML 적용
         dangerouslySetInnerHTML={{ __html: body }}
