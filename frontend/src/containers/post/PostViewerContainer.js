@@ -4,8 +4,9 @@ import { readPost, unloadPost } from 'modules/post';
 import { withRouter } from 'react-router-dom';
 import PostViewer from 'components/post/PostViewer';
 import PostActionButtons from 'components/post/PostActionButtons';
+import { setOriginalPost } from 'modules/write';
 
-const PostViewerContainer = ({ match }) => {
+const PostViewerContainer = ({ match, history }) => {
   const { postId } = match.params;
   const dispatch = useDispatch();
   const { post, error, loading } = useSelector(({ post, loading }) => ({
@@ -22,12 +23,17 @@ const PostViewerContainer = ({ match }) => {
     };
   }, [dispatch, postId]);
 
+  const onEdit = () => {
+    dispatch(setOriginalPost(post));
+    history.push('/write');
+  };
+
   return (
     <PostViewer
       post={post}
       loading={loading}
       error={error}
-      actionButtons={<PostActionButtons />}
+      actionButtons={<PostActionButtons onEdit={onEdit} />}
     ></PostViewer>
   );
 };
