@@ -4,6 +4,7 @@ import palette from 'lib/styles/palette';
 import Responsive from 'components/common/Responsive';
 import Button from 'components/common/Button';
 import SubInfo from 'components/common/SubInfo';
+import { Link } from 'react-router-dom';
 
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -37,17 +38,25 @@ const PostItemBlock = styled.div`
   }
 `;
 
-const PostItem = () => {
+const PostItem = ({ post }) => {
+  const { publishedDate, title, body, _id } = post;
+
   return (
     <PostItemBlock>
-      <h2>제목</h2>
-      <SubInfo publishedDate={new Date()} />
-      <p>포스트 내용의 일부분..</p>
+      <h2>
+        <Link to={`/${_id}`}>{title}</Link>
+      </h2>
+      <SubInfo publishedDate={new Date(publishedDate)} />
+      <p>{body}</p>
     </PostItemBlock>
   );
 };
 
-const PostList = () => {
+const PostList = ({ posts, loading, error }) => {
+  if (error) {
+    return <PostListBlock>오류 발생</PostListBlock>;
+  }
+
   return (
     <PostListBlock>
       <WritePostButtonWrapper>
@@ -55,11 +64,13 @@ const PostList = () => {
           새 글 작성하기
         </Button>
       </WritePostButtonWrapper>
-      <div>
-        <PostItem />
-        <PostItem />
-        <PostItem />
-      </div>
+      {!loading && posts && (
+        <div>
+          {posts.map((post) => (
+            <PostItem post={post} key={post._id}></PostItem>
+          ))}
+        </div>
+      )}
     </PostListBlock>
   );
 };
